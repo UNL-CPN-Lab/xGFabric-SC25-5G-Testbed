@@ -1,0 +1,626 @@
+2025-04-03T19:48:25.939723 [GNB     ] [I] Built in Release mode using commit 8120ffbce on branch main
+2025-04-03T19:48:25.940388 [CONFIG  ] [I] Input configuration (only non-default values): 
+log:
+  filename: /tmp/gnb.log
+  all_level: info
+cu_cp:
+  amf:
+    addr: 10.53.1.2
+    port: 38412
+    bind_addr: 10.53.1.3
+    supported_tracking_areas: "tac: 7\nplmn_list:\n  - plmn: 00101\n    tai_slice_support_list:\n      - sst: 1"
+pcap:
+  ngap_filename: /tmp/gnb_ngap.pcap
+  ngap_enable: true
+  mac_filename: /tmp/gnb_mac.pcap
+  mac_enable: true
+cell_cfg:
+  dl_arfcn: 368500
+  band: 3
+  common_scs: 15
+  channel_bandwidth_MHz: 20
+  plmn: 00101
+  tac: 7
+  pdcch:
+    common:
+      coreset0_index: 12
+      ss0_index: 0
+    dedicated:
+      dci_format_0_1_and_1_1: false
+      ss2_type: common
+  pdsch:
+    mcs_table: qam64
+  pusch:
+    mcs_table: qam64
+  prach:
+    prach_config_index: 1
+ru_sdr:
+  srate: 23.04
+  device_driver: uhd
+  device_args: type=b200
+  tx_gain: 80
+  rx_gain: 50
+  clock: external
+2025-04-03T19:48:26.572249 [ALL     ] [I] Task worker "phy_prach#0" started...
+2025-04-03T19:48:26.572558 [ALL     ] [I] Task worker "radio" started...
+2025-04-03T19:48:26.572635 [ALL     ] [I] Task worker "lower_phy_tx#0" started...
+2025-04-03T19:48:26.572654 [ALL     ] [I] Task worker "lower_phy_rx#0" started...
+2025-04-03T19:48:26.572664 [ALL     ] [I] Task worker "ru_stats_worker" started...
+2025-04-03T19:48:26.572712 [ALL     ] [I] Task worker "lower_phy_dl#0" started...
+2025-04-03T19:48:26.572723 [ALL     ] [I] Task worker "lower_phy_ul#0" started...
+2025-04-03T19:48:26.574091 [GTPU    ] [I] GTP-U demux. warn_on_drop=false test_mode=false
+2025-04-03T19:48:26.574100 [GTPU    ] [I] Tunnel added. teid=0x000000
+2025-04-03T19:48:26.574102 [UDP-GW  ] [I] UDP GW configured. rx_max_mmsg=256 pool_thres=0.9 ext_bind_addr=auto
+2025-04-03T19:48:26.574226 [IO-EPOLL] [I] fd=8: Registered file descriptor successfully
+2025-04-03T19:48:26.761849 [DU      ] [I] DU created successfully
+2025-04-03T19:48:26.761857 [DU      ] [I] O-DU created successfully
+2025-04-03T19:48:28.509943 [GNB     ] [I] SSB derived parameters for cell: 1, band: 3, dl_arfcn:368500, nof_crbs: 106 scs:15kHz, ssb_scs:15kHz:
+	 - SSB offset pointA:40 
+	 - k_SSB:6 
+	 - SSB arfcn:368410 
+	 - Coreset index:12 
+	 - Searchspace index:0
+2025-04-03T19:48:28.510014 [IO-EPOLL] [I] fd=0: Registered file descriptor successfully
+2025-04-03T19:48:28.510017 [GNB     ] [I] Starting CU-CP...
+2025-04-03T19:48:28.510100 [SCTP-GW ] [I] N2: Bind to 10.53.1.3:0 was successful
+2025-04-03T19:48:28.510235 [IO-EPOLL] [I] fd=14: Registered file descriptor successfully
+2025-04-03T19:48:28.510237 [SCTP-GW ] [I] N2: SCTP connection to AMF on 10.53.1.2:38412 was established
+2025-04-03T19:48:28.510241 [CU-CP   ] [I] N2: Connection to AMF on 10.53.1.2:38412 was established
+2025-04-03T19:48:28.510288 [NGAP    ] [I] Tx PDU: NGSetupRequest
+2025-04-03T19:48:28.514238 [NGAP    ] [I] Rx PDU: NGSetupResponse
+2025-04-03T19:48:28.514252 [CU-CP   ] [I] Connected to AMF. Supported PLMNs: 00101 
+2025-04-03T19:48:28.514267 [GNB     ] [I] CU-CP started successfully
+2025-04-03T19:48:28.514271 [CU-UP   ] [I] CU-UP starting...
+2025-04-03T19:48:28.514379 [CU-CP   ] [I] Added TNL connection to CU-UP 0
+2025-04-03T19:48:28.514396 [CU-UP-E1] [I] Sending E1SetupRequest
+2025-04-03T19:48:28.514398 [CU-UP-E1] [I] Tx PDU tid=0: GNB-CU-UP-E1SetupRequest
+2025-04-03T19:48:28.514403 [CU-CP-E1] [I] Rx PDU tid=0: GNB-CU-UP-E1SetupRequest
+2025-04-03T19:48:28.514408 [CU-CP-E1] [I] Tx PDU tid=0: GNB-CU-UP-E1SetupResponse
+2025-04-03T19:48:28.514411 [CU-UP-E1] [I] Rx PDU tid=0: GNB-CU-UP-E1SetupResponse
+2025-04-03T19:48:28.514413 [CU-UP-E1] [I] "E1AP CU-UP Setup Procedure" finalized
+2025-04-03T19:48:28.514421 [CU-UP   ] [I] CU-UP started successfully
+2025-04-03T19:48:28.514424 [DU      ] [I] Starting DU...
+2025-04-03T19:48:28.514424 [DU      ] [I] Starting DU-High...
+2025-04-03T19:48:28.514425 [DU-MNG  ] [I] DU manager starting...
+2025-04-03T19:48:28.514549 [CU-CP   ] [I] Added TNL connection to DU 0
+2025-04-03T19:48:28.514660 [DU-MNG  ] [I] SIB1 cell=0: {
+  "cellSelectionInfo": {
+    "q-RxLevMin": -70,
+    "q-QualMin": -20
+  },
+  "cellAccessRelatedInfo": {
+    "plmn-IdentityInfoList": [
+      {
+        "plmn-IdentityList": [
+          {
+            "mcc": [
+              0,
+              0,
+              1
+            ],
+            "mnc": [
+              0,
+              1
+            ]
+          }
+        ],
+        "trackingAreaCode": "000000000000000000000111",
+        "cellIdentity": "000000000000011001101100000000000000",
+        "cellReservedForOperatorUse": "notReserved"
+      }
+    ]
+  },
+  "connEstFailureControl": {
+    "connEstFailCount": "n1",
+    "connEstFailOffsetValidity": "s30",
+    "connEstFailOffset": 1
+  },
+  "servingCellConfigCommon": {
+    "downlinkConfigCommon": {
+      "frequencyInfoDL": {
+        "frequencyBandList": [
+          {
+            "freqBandIndicatorNR": 3
+          }
+        ],
+        "offsetToPointA": 40,
+        "scs-SpecificCarrierList": [
+          {
+            "offsetToCarrier": 0,
+            "subcarrierSpacing": "kHz15",
+            "carrierBandwidth": 106,
+            "txDirectCurrentLocation": 636
+          }
+        ]
+      },
+      "initialDownlinkBWP": {
+        "genericParameters": {
+          "locationAndBandwidth": 28875,
+          "subcarrierSpacing": "kHz15"
+        },
+        "pdcch-ConfigCommon": {
+          {
+            "commonSearchSpaceList": [
+              {
+                "searchSpaceId": 1,
+                "controlResourceSetId": 0,
+                "monitoringSlotPeriodicityAndOffset": {
+                },
+                "monitoringSymbolsWithinSlot": "10000000000000",
+                "nrofCandidates": {
+                  "aggregationLevel1": "n0",
+                  "aggregationLevel2": "n0",
+                  "aggregationLevel4": "n1",
+                  "aggregationLevel8": "n0",
+                  "aggregationLevel16": "n0"
+                },
+                "searchSpaceType": {
+                  "common": {
+                    "dci-Format0-0-AndFormat1-0": {
+                    }
+                  }
+                }
+              }
+            ],
+            "searchSpaceSIB1": 0,
+            "pagingSearchSpace": 1,
+            "ra-SearchSpace": 1
+          }
+        },
+        "pdsch-ConfigCommon": {
+          {
+            "pdsch-TimeDomainAllocationList": [
+              {
+                "mappingType": "typeA",
+                "startSymbolAndLength": 40
+              }
+            ]
+          }
+        }
+      },
+      "bcch-Config": {
+        "modificationPeriodCoeff": "n4"
+      },
+      "pcch-Config": {
+        "defaultPagingCycle": "rf128",
+        "nAndPagingFrameOffset": {
+        },
+        "ns": "one"
+      }
+    },
+    "uplinkConfigCommon": {
+      "frequencyInfoUL": {
+        "frequencyBandList": [
+          {
+            "freqBandIndicatorNR": 3
+          }
+        ],
+        "absoluteFrequencyPointA": 347592,
+        "scs-SpecificCarrierList": [
+          {
+            "offsetToCarrier": 0,
+            "subcarrierSpacing": "kHz15",
+            "carrierBandwidth": 106
+          }
+        ]
+      },
+      "initialUplinkBWP": {
+        "genericParameters": {
+          "locationAndBandwidth": 28875,
+          "subcarrierSpacing": "kHz15"
+        },
+        "rach-ConfigCommon": {
+          {
+            "rach-ConfigGeneric": {
+              "prach-ConfigurationIndex": 1,
+              "msg1-FDM": "one",
+              "msg1-FrequencyStart": 8,
+              "zeroCorrelationZoneConfig": 0,
+              "preambleReceivedTargetPower": -100,
+              "preambleTransMax": "n7",
+              "powerRampingStep": "dB4",
+              "ra-ResponseWindow": "sl10"
+            },
+            "ssb-perRACH-OccasionAndCB-PreamblesPerSSB": {
+              "one": "n64"
+            },
+            "ra-ContentionResolutionTimer": "sf64",
+            "prach-RootSequenceIndex": {
+              "l839": 1
+            },
+            "restrictedSetConfig": "unrestrictedSet"
+          }
+        },
+        "pusch-ConfigCommon": {
+          {
+            "pusch-TimeDomainAllocationList": [
+              {
+                "k2": 4,
+                "mappingType": "typeA",
+                "startSymbolAndLength": 27
+              }
+            ],
+            "msg3-DeltaPreamble": 6,
+            "p0-NominalWithGrant": -76
+          }
+        },
+        "pucch-ConfigCommon": {
+          {
+            "pucch-ResourceCommon": 11,
+            "pucch-GroupHopping": "neither",
+            "p0-nominal": -90
+          }
+        }
+      },
+      "timeAlignmentTimerCommon": "infinity"
+    },
+    "n-TimingAdvanceOffset": "n25600",
+    "ssb-PositionsInBurst": {
+      "inOneGroup": "10000000"
+    },
+    "ssb-PeriodicityServingCell": "ms10",
+    "ss-PBCH-BlockPower": -16
+  },
+  "ue-TimersAndConstants": {
+    "t300": "ms1000",
+    "t301": "ms1000",
+    "t310": "ms1000",
+    "n310": "n1",
+    "t311": "ms3000",
+    "n311": "n1",
+    "t319": "ms1000"
+  }
+}
+2025-04-03T19:48:28.514707 [DU-F1   ] [I] F1 Setup: Sending F1 Setup Request to CU-CP...
+2025-04-03T19:48:28.514708 [DU-F1   ] [I] Tx PDU du=0 tid=0: F1SetupRequest
+2025-04-03T19:48:28.514728 [CU-CP-F1] [I] Rx PDU du=0 tid=0: F1SetupRequest
+2025-04-03T19:48:28.514747 [CU-CP-F1] [I] Tx PDU du=0 tid=0: F1SetupResponse
+2025-04-03T19:48:28.514752 [DU-F1   ] [I] Rx PDU du=0 tid=0: F1SetupResponse
+2025-04-03T19:48:28.514753 [DU-F1   ] [I] F1 Setup: Procedure completed successfully.
+2025-04-03T19:48:28.529401 [DU-MNG  ] [I] DU manager started successfully.
+2025-04-03T19:48:28.529402 [DU      ] [I] DU-High started successfully
+2025-04-03T19:48:28.529405 [DU      ] [I] DU started successfully
+2025-04-03T19:48:28.529991 [SCHED   ] [I] [   172.3] Processed slot events pci=1: Cell creation idx=0 pci=1
+2025-04-03T19:48:34.225296 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:48:40.398309 [FAPI    ] [W] [   325.2] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 324.9
+2025-04-03T19:48:40.398312 [FAPI    ] [W] [   325.2] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 324.9
+2025-04-03T19:48:40.398322 [SCHED   ] [I] [   325.0] Processed slot events pci=1: ErrorIndication slot=324.9, ErrorIndication slot=324.9
+2025-04-03T19:48:40.406278 [PHY     ] [W] [   326.0] Resource grid with identifier 6 is not available.
+2025-04-03T19:48:40.406280 [FAPI    ] [W] [   326.0] Could not enqueue SSB PDU in the downlink processor
+2025-04-03T19:48:40.412285 [PHY     ] [W] [   325.0] Real-time failure in low-phy: Downlink data late for sector 0 and slot 325.0.
+2025-04-03T19:48:47.024088 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:48:54.702021 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:48:54.712177 [PHY     ] [W] [   732.6] Resource grid with identifier 2 is not available.
+2025-04-03T19:48:54.718119 [PHY     ] [W] [   731.6] Real-time failure in low-phy: Downlink data late for sector 0 and slot 731.6.
+2025-04-03T19:48:58.731573 [APP     ] [D] Stdin has data to read
+2025-04-03T19:48:58.731578 [APP     ] [D] read 3 B from stdin
+2025-04-03T19:49:03.035301 [APP     ] [D] Stdin has data to read
+2025-04-03T19:49:03.035305 [APP     ] [D] read 11 B from stdin
+2025-04-03T19:49:07.503913 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:49:11.179064 [FAPI    ] [W] [   331.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 331.0
+2025-04-03T19:49:11.179067 [FAPI    ] [W] [   331.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 331.0
+2025-04-03T19:49:11.179075 [SCHED   ] [I] [   331.1] Processed slot events pci=1: ErrorIndication slot=331.0, ErrorIndication slot=331.0
+2025-04-03T19:49:11.186980 [PHY     ] [W] [   332.1] Resource grid with identifier 6 is not available.
+2025-04-03T19:49:11.192997 [PHY     ] [W] [   331.1] Real-time failure in low-phy: Downlink data late for sector 0 and slot 331.1.
+2025-04-03T19:49:25.422796 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:49:30.762503 [APP     ] [D] Stdin has data to read
+2025-04-03T19:49:30.762507 [APP     ] [D] read 11 B from stdin
+2025-04-03T19:49:44.439774 [PHY     ] [W] [   585.4] Resource grid with identifier 9 is not available.
+2025-04-03T19:49:44.445708 [PHY     ] [W] [   584.4] Real-time failure in low-phy: Downlink data late for sector 0 and slot 584.4.
+2025-04-03T19:49:45.902570 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:49:45.911662 [PHY     ] [W] [   732.6] Resource grid with identifier 1 is not available.
+2025-04-03T19:49:45.917701 [PHY     ] [W] [   731.6] Real-time failure in low-phy: Downlink data late for sector 0 and slot 731.6.
+2025-04-03T19:49:56.144277 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:49:56.145959 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:49:56.146307 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146421 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146428 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146504 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146504 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146584 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146590 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146660 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146704 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146742 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146780 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:49:56.146860 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.384244 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:06.384299 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:06.385931 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:50:06.386312 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386378 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386430 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386431 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386536 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386588 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386589 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386700 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386701 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386749 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386755 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:06.386828 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:16.725329 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:24.432235 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:30.735383 [PHY     ] [W] [    95.0] Resource grid with identifier 5 is not available.
+2025-04-03T19:50:30.735385 [FAPI    ] [W] [    95.0] Could not enqueue SSB PDU in the downlink processor
+2025-04-03T19:50:30.741465 [PHY     ] [W] [    94.0] Real-time failure in low-phy: Downlink data late for sector 0 and slot 94.0.
+2025-04-03T19:50:34.480155 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:35.568300 [FAPI    ] [W] [   578.3] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 578.0
+2025-04-03T19:50:35.568302 [FAPI    ] [W] [   578.3] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 578.0
+2025-04-03T19:50:35.568312 [SCHED   ] [I] [   578.1] Processed slot events pci=1: ErrorIndication slot=578.0, ErrorIndication slot=578.0
+2025-04-03T19:50:35.576361 [PHY     ] [W] [   579.1] Resource grid with identifier 5 is not available.
+2025-04-03T19:50:35.582284 [PHY     ] [W] [   578.1] Real-time failure in low-phy: Downlink data late for sector 0 and slot 578.1.
+2025-04-03T19:50:44.400068 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:46.448053 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:50.488277 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:50.488330 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:50.489983 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:50:56.430631 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:50:56.432622 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.432683 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.432701 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.432750 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.432782 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.432823 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.432872 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.432901 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.432940 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.432978 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.433017 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.433061 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434030 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:50:56.434374 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434492 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434497 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434572 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434576 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434654 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434690 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434734 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434770 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434813 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434854 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:50:56.434930 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.855582 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:04.855607 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:04.857245 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:04.857597 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.857710 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.857714 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.857792 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.857801 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.857877 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.857883 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.857951 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.857988 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.858030 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.858069 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:04.858110 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.611641 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:06.611653 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:06.613245 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:06.613657 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.613697 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.613735 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.613813 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.613857 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.613894 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.613936 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.613974 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.614059 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.614065 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.614327 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:06.614335 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.706284 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:08.706340 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:08.707910 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:08.708262 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708377 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708380 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708459 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708465 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708540 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708547 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708618 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708653 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708696 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708734 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:08.708774 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.216360 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:13.216377 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:13.218041 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:13.218386 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218504 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218510 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218584 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218592 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218668 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218703 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218745 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218783 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218825 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218862 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:13.218941 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.814092 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:16.814116 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:16.815741 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:16.816118 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816157 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816199 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816237 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816314 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816359 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816394 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816478 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816484 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816559 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816564 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:16.816637 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.625362 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:20.625384 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:20.627008 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:20.627358 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627473 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627478 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627554 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627560 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627638 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627643 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627713 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627751 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627795 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627833 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:20.627909 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.264761 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:25.264779 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:25.266409 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:25.266821 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.266863 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.266901 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.266979 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.266985 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.267062 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.267103 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.267139 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.267222 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.267228 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.267303 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:25.267309 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.869091 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:28.869107 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:28.870782 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:28.871130 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871247 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871252 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871328 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871333 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871414 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871422 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871488 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871526 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871568 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871607 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:28.871648 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.864265 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:30.864282 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:30.865906 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:30.866330 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866368 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866404 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866484 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866490 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866563 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866608 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866644 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866726 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866728 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866808 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:30.866815 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:32.461540 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:34.861789 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:35.293841 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:41.103484 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:47.475298 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:47.475323 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:47.476978 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:51:47.477265 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477348 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477352 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477423 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477461 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477505 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477540 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477619 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477622 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477701 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477707 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:47.477781 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:51:51.179488 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:51:54.415830 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:00.560444 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:02.868685 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:05.680270 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:05.680302 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:05.681941 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:52:05.682289 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:05.682405 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:05.682411 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:05.682488 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:05.682492 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:05.682572 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:05.682575 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:05.682646 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:05.682683 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.702081 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:06.702100 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:06.703810 [RF      ] [W] Real-time failure in RF: overflow
+2025-04-03T19:52:06.704192 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704272 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704281 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704354 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704355 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704438 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704439 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704512 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704550 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704593 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704631 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:06.704711 [RF      ] [W] Real-time failure in RF: late
+2025-04-03T19:52:11.180463 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:14.724806 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:16.726066 [RF      ] [W] Real-time failure in RF: underflow
+2025-04-03T19:52:22.869888 [FAPI    ] [W] [    43.5] Sector#0: Real-time failure in FAPI: Received late DL_TTI.request from slot 43.2
+2025-04-03T19:52:22.869891 [FAPI    ] [W] [    43.5] Sector#0: Real-time failure in FAPI: Received late UL_TTI.request from slot 43.2
+2025-04-03T19:52:22.869901 [SCHED   ] [I] [    43.3] Processed slot events pci=1: ErrorIndication slot=43.2, ErrorIndication slot=43.2
+2025-04-03T19:52:22.877833 [PHY     ] [W] [    44.3] Resource grid with identifier 6 is not available.
+2025-04-03T19:52:22.883792 [PHY     ] [W] [    43.3] Real-time failure in low-phy: Downlink data late for sector 0 and slot 43.3.
+2025-04-03T19:52:23.828783 [DU      ] [I] Stopping DU...
+2025-04-03T19:52:23.828784 [DU      ] [I] Stopping DU-High...
+2025-04-03T19:52:23.828837 [MAC     ] [I] [   139.4] cell=0: Cell was stopped.
+2025-04-03T19:52:23.828901 [DU-F1   ] [I] Tx PDU du=0 tid=1: F1RemovalRequest
+2025-04-03T19:52:23.828911 [CU-CP-F1] [I] Rx PDU du=0 tid=1: F1RemovalRequest
+2025-04-03T19:52:23.828932 [CU-CP-F1] [I] Tx PDU du=0 tid=1: F1RemovalResponse
+2025-04-03T19:52:23.828936 [DU-F1   ] [I] Rx PDU du=0 tid=1: F1RemovalResponse
+2025-04-03T19:52:23.828962 [CU-CP   ] [I] Removed DU 0
+2025-04-03T19:52:23.828964 [DU-F1   ] [I] F1 Removal: F1 TNL association shut down
+2025-04-03T19:52:23.828991 [DU      ] [I] DU-High stopped successfully
+2025-04-03T19:52:23.828992 [DU      ] [I] DU stopped successfully
+2025-04-03T19:52:23.829107 [CU-UP   ] [I] CU-UP stopped successfully
+2025-04-03T19:52:23.829114 [CU-CP   ] [I] Stopping CU-CP...
+2025-04-03T19:52:23.829137 [CU-CP   ] [I] Removed CU-UP 0
+2025-04-03T19:52:23.829320 [CU-CP   ] [I] CU-CP stopped successfully.
+2025-04-03T19:52:23.829321 [GNB     ] [I] Closing PCAP files...
+2025-04-03T19:52:23.829497 [ALL     ] [I] Saved PCAP (DLT=152) to "/tmp/gnb_ngap.pcap" and closed
+2025-04-03T19:52:23.829497 [ALL     ] [I] Failed to close already closed PCAP (DLT=152)
+2025-04-03T19:52:23.829511 [ALL     ] [I] Failed to flush closed PCAP (DLT=152)
+2025-04-03T19:52:23.829511 [ALL     ] [I] Failed to close already closed PCAP (DLT=152)
+2025-04-03T19:52:23.829625 [ALL     ] [I] Saved PCAP (DLT=149) to "/tmp/gnb_mac.pcap" and closed
+2025-04-03T19:52:23.829625 [ALL     ] [I] Failed to close already closed PCAP (DLT=149)
+2025-04-03T19:52:23.829633 [ALL     ] [I] Failed to flush closed PCAP (DLT=149)
+2025-04-03T19:52:23.829634 [ALL     ] [I] Failed to close already closed PCAP (DLT=149)
+2025-04-03T19:52:23.829635 [GNB     ] [I] PCAP files successfully closed.
+2025-04-03T19:52:23.829635 [GNB     ] [I] Stopping executors...
+2025-04-03T19:52:23.829643 [ALL     ] [I] Task worker "lower_phy_ul#0" finished.
+2025-04-03T19:52:23.829678 [ALL     ] [I] Task worker "lower_phy_dl#0" finished.
+2025-04-03T19:52:23.829702 [ALL     ] [I] Task worker "lower_phy_tx#0" finished.
+2025-04-03T19:52:23.829724 [ALL     ] [I] Task worker "radio" finished.
+2025-04-03T19:52:23.829795 [ALL     ] [I] Task worker "pusch#0#0" finished.
+2025-04-03T19:52:23.829803 [ALL     ] [I] Task worker "pusch#0#1" finished.
+2025-04-03T19:52:23.829838 [ALL     ] [I] Task worker "up_phy_ul#0#0" finished.
+2025-04-03T19:52:23.829855 [ALL     ] [I] Task worker "up_phy_ul#0#1" finished.
+2025-04-03T19:52:23.829861 [ALL     ] [I] Task worker "lower_phy_rx#0" finished.
+2025-04-03T19:52:23.829891 [ALL     ] [I] Task worker "ru_stats_worker" finished.
+2025-04-03T19:52:23.829922 [ALL     ] [I] Task worker "du_cell#0" finished.
+2025-04-03T19:52:23.830067 [ALL     ] [I] Task worker "up_phy_dl#0#0" finished.
+2025-04-03T19:52:23.830080 [ALL     ] [I] Task worker "up_phy_dl#0#1" finished.
+2025-04-03T19:52:23.830094 [ALL     ] [I] Task worker "up_phy_dl#0#2" finished.
+2025-04-03T19:52:23.830106 [ALL     ] [I] Task worker "up_phy_dl#0#3" finished.
+2025-04-03T19:52:23.830114 [ALL     ] [I] Task worker "up_phy_dl#0#4" finished.
+2025-04-03T19:52:23.830122 [ALL     ] [I] Task worker "up_phy_dl#0#5" finished.
+2025-04-03T19:52:23.830135 [ALL     ] [I] Task worker "phy_prach#0" finished.
+2025-04-03T19:52:23.830254 [ALL     ] [I] Task worker "non_rt_pool#0" finished.
+2025-04-03T19:52:23.830266 [ALL     ] [I] Task worker "non_rt_pool#1" finished.
+2025-04-03T19:52:23.830273 [ALL     ] [I] Task worker "non_rt_pool#2" finished.
+2025-04-03T19:52:23.830285 [ALL     ] [I] Task worker "non_rt_pool#3" finished.
+2025-04-03T19:52:23.830286 [GNB     ] [I] Executors closed successfully.
+2025-04-03T19:52:23.855254 [IO-EPOLL] [I] Closed io_broker

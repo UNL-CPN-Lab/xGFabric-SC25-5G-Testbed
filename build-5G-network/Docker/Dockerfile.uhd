@@ -1,0 +1,35 @@
+ARG BASE
+FROM ${BASE}
+
+ENV DEBIAN_FRONTEND noninteractive
+
+ARG UHD_TAG=v4.8.0.0
+
+USER root
+
+# ARG NUM_CORES=$(($(grep -c '^processor' /proc/cpuinfo) * 80 / 100))
+
+
+# Install gnupg to allow apt-key verification, time to allow profiling
+RUN apt-get update 
+RUN apt-get install -y gnupg time
+
+# Install nala
+RUN nala install -y libboost-all-dev libusb-1.0-0-dev doxygen python3-docutils python3-mako python3-numpy python3-requests python3-ruamel.yaml python3-setuptools cmake build-essential
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
+RUN pip3 install --break-system-packages mako requests numpy
+
+WORKDIR /build/ettus
+RUN  git clone --branch ${UHD_TAG} https://github.com/EttusResearch/uhd
+WORKDIR /build/ettus/uhd/host/build
+RUN  cmake ../ -DENABLE_PYTHON_API=ON  ../ && make -j${CORES}&& make test && make install && ldconfig
+
+WORKDIR /build/ettus/uhd/host/build/python
+RUN python3 setup.py install
+RUN export LD_LIBRARY_PATH=/usr/local/lib
+
+USER nexttuser
+WORKDIR /home/nexttuser
+RUN echo 'alias python="python3"' >> "${PWD}/.zshrc"
+RUN echo 'alias pip="pip3"' >> "${PWD}/.zshrc"

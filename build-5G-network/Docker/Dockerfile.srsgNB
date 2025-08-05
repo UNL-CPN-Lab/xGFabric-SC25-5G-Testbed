@@ -1,0 +1,35 @@
+ARG BASE=its-registry.unl.edu/nextt/runtime/base-uhd/arm64-uhd_4.8:main-1a24a702
+FROM ${BASE}
+
+USER root
+
+# Use a build argument with a default for amd64
+ARG PKG_CONFIG_PATH_VALUE=/usr/lib/x86_64-linux-gnu/pkgconfig
+ENV PKG_CONFIG_PATH=${PKG_CONFIG_PATH_VALUE}:$PKG_CONFIG_PATH
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# RUN NUM_CORES=$(($(grep -c '^processor' /proc/cpuinfo) * 95 / 100))
+
+RUN nala update 
+RUN nala install --assume-yes clang cmake make gcc g++ pkg-config libfftw3-dev libmbedtls-dev libsctp-dev libyaml-cpp-dev libgtest-dev libzmq3-dev
+
+# Default to clang cause llvm is cool
+ENV CC=clang
+ENV CXX=clang++
+
+# Add the architecture-specific pkg-config path (adjust path for your target architecture if needed)
+ENV PKG_CONFIG_PATH=/usr/lib/arm-linux-gnueabihf/pkgconfig:$PKG_CONFIG_PATH
+
+WORKDIR /build
+RUN git clone https://github.com/srsRAN/srsRAN_Project.git
+
+WORKDIR /build/srsRAN_Project/build
+RUN cmake -DENABLE_DPDK=False -DASSERT_LEVEL=MINIMAL -DENABLE_EXPORT=ON -DENABLE_ZEROMQ=ON ../ && \
+   make -j $(CORES)
+
+WORKDIR /build/srsRAN_Project/build/apps/gnb
+RUN make install
+
+USER nexttuser
+

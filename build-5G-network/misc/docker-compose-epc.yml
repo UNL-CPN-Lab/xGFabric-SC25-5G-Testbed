@@ -1,0 +1,26 @@
+# use docker network create --subnet=10.53.1.0/24 docker_ran
+# to create the network first
+# "Config": [
+#     {
+#         "Subnet": "10.53.1.0/24",
+#         "Gateway": "10.53.1.1"
+#     }
+
+networks:
+  docker_ran:
+    external: true
+
+services:
+  5gc:
+    image: open5gs-docker
+    env_file:
+      - ${OPEN_5GS_ENV_FILE:-docker/open5gs/open5gs.env}
+    privileged: true
+    ports:
+      - "9999:9999/tcp"
+      - "38412:38412/sctp"
+      - "2152:2152/udp"
+    command: ["5gc", "-c", "open5gs-5gc.yml"]
+    networks:
+      docker_ran:
+        ipv4_address: ${OPEN5GS_IP:-10.53.1.2}

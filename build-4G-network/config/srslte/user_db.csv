@@ -1,0 +1,28 @@
+#                                                                                           
+# .csv to store UE's information in HSS                                                     
+# Kept in the following format: "Name,Auth,IMSI,Key,OP_Type,OP/OPc,AMF,SQN,QCI,IP_alloc"  
+#                                                                                           
+# Name:     Human readable name to help distinguish UE's. Ignored by the HSS                
+# Auth:     Authentication algorithm used by the UE. Valid algorithms are XOR               
+#           (xor) and MILENAGE (mil)                                                        
+# IMSI:     UE's IMSI value                                                                 
+# Key:      UE's key, where other keys are derived from. Stored in hexadecimal              
+# OP_Type:  Operator's code type, either OP or OPc                                          
+# OP/OPc:   Operator Code/Cyphered Operator Code, stored in hexadecimal                     
+# AMF:      Authentication management field, stored in hexadecimal                          
+# SQN:      UE's Sequence number for freshness of the authentication                        
+# QCI:      QoS Class Identifier for the UE's default bearer.                               
+# IP_alloc: IP allocation stratagy for the SPGW.                                            
+#           With 'dynamic' the SPGW will automatically allocate IPs                         
+#           With a valid IPv4 (e.g. '172.16.0.2') the UE will have a statically assigned IP.
+#                                                                                           
+# Note: Lines starting by '#' are ignored and will be overwritten                           
+#ue4,mil,999990069873389,00112233445566778899aabbccddeeff,op,33331111111111111111111100000000,8000,000000007000,7,192.168.20.3
+#ue2,mil,999990123456780,00112233445566778899aabbccddeeff,op,21111111111111111111111100000000,8000,000000002a98,7,dynamic
+#ue3,mil,999990123456790,00112233445566778899aabbccddeeff,op,11111111111111111111111100000000,8000,0000000058a8,7,172.16.0.2
+#ue3,mil,999990123456790,00112233445566778899aabbccddeeff,op,11111111111111111111111100000000,8000,0000000058a8,7,192.168.20.3
+#ue3,mil,999990123456790,00112233445566778899aabbccddeeff,op,11111111111111111111111100000000,8000,0000000058a8,7,192.168.20.20
+#ue3,mil,999990123456799,00112233445566778899aabbccddeeff,op,11111111111111111111111000000000,8000,0000000058a8,7,192.168.20.30
+ue3,mil,999990123456790,00112233445566778899aabbccddeeff,op,11111111111111111111111100000000,8000,0000000058a8,7,129.93.240.11
+ue3,mil,999990123456799,00112233445566778899aabbccddeeff,op,11111111111111111111111000000000,8000,0000000058a8,7,129.93.240.12
+ue3,mil,001010123456780,00112233445566778899aabbccddeeff,opc,11111111111111111111111000000000,8000,0000000058a8,7,129.93.240.13

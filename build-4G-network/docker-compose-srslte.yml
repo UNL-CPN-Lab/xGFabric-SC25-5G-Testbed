@@ -1,0 +1,63 @@
+version: '3'
+  
+networks:
+  core_network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: corenet
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.26.0/24
+          gateway: 192.168.26.1
+
+services: 
+  epc: 
+    # image: its-registry.unl.edu/nextt/demo_projects/ng-ran/srslte
+    image: srslte
+    # image: srswithguiv4
+    privileged: true
+    restart: unless-stopped
+    cap_add:
+      - NET_ADMIN
+      - SYS_NICE
+    volumes: 
+      - ./config/srslte/:/etc/srslte
+      - ./config/srslte/:/home/nexttuser/.config/srslte
+      - /dev/bus/usb:/dev/bus/usb
+      - /lib/modules:/lib/modules
+      - /etc/network:/etc/network:rw
+      - ./startup_epc.sh:/start/startup_epc.sh
+      - ./startup.sh:/start/startup.sh
+    networks:
+        core_network:
+          ipv4_address: 192.168.26.2
+    # entrypoint: ["/bin/bash"]
+    command: 'bash /start/startup_epc.sh'
+    
+  enb:
+    # image: its-registry.unl.edu/nextt/demo_projects/ng-ran/srslte
+    image: srslte
+    # image: srswithguiv4
+    privileged: true
+    restart: unless-stopped
+    environment:
+    - DISPLAY=${DISPLAY}
+    volumes: 
+    - ./config/srslte/:/etc/srslte
+    - ./config/srslte:/home/nexttuser/.config/srslte
+    - /dev/bus/usb:/dev/bus/usb
+    - /lib/modules:/lib/modules
+    - /etc/network:/etc/network:rw
+    - /tmp/.X11-unix:/tmp/.X11-unix
+    - ./startup.sh:/start/startup.sh
+    networks:
+        core_network:
+            ipv4_address: 192.168.26.3
+
+    depends_on: 
+      - epc
+    # entrypoint: ["/bin/bash"]
+    command: 'bash -c "srsenb"'
+
+    

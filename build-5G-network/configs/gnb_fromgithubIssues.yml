@@ -1,0 +1,54 @@
+#https://github.com/srsran/srsRAN_Project/issues/859
+
+# This example configuration outlines how to configure the srsRAN Project gNB to create a single FDD cell
+# transmitting in band 3, with 20 MHz bandwidth and 30 kHz sub-carrier-spacing. A USRP N3XX is configured 
+# as the RF frontend using split 8. Note in this example the internal GPDSO of the N310 is used.
+cu_cp:
+  # inactivity_timer: 7200
+  amf:
+    addr: 10.53.1.2
+    port: 38412
+    bind_addr: 10.53.1.3
+    supported_tracking_areas:
+      - tac: 1
+        plmn_list:
+          - plmn: "20893"
+            tai_slice_support_list:
+              - sst:
+              - sd:
+
+ru_sdr:
+  device_driver: uhd
+  device_args:
+  # clock: external
+  # sync: external
+  srate: 15.36
+  tx_gain: 60
+  rx_gain: 30
+
+cell_cfg:
+  dl_arfcn: 368640                    
+  band: 3                             
+  channel_bandwidth_MHz: 10          
+  common_scs: 15                      
+  plmn: "20893"                       
+  tac: 1
+  pdcch:
+    common:
+      ss0_index: 0                  # Set search space zero index to match srsUE capabilities
+      coreset0_index: 6            # Set search CORESET Zero index to match srsUE capabilities
+    dedicated:
+      ss2_type: common              # Search Space type, has to be set to common
+      dci_format_0_1_and_1_1: false # Set correct DCI format (fallback)
+  prach:
+    prach_config_index: 1           # Sets PRACH config to match what is expected by srsUE
+
+log:
+  filename: /tmp/gnb.log              
+  all_level: info                     
+
+pcap:
+  mac_enable: false                   
+  mac_filename: /tmp/gnb_mac.pcap     
+  ngap_enable: false                  
+  ngap_filename: /tmp/gnb_ngap.pcap   

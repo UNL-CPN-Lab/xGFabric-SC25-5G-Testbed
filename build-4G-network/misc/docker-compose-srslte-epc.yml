@@ -1,0 +1,82 @@
+version: '3'
+
+networks:
+  core_network:
+    driver: bridge
+    driver_opts:
+      com.docker.network.bridge.name: corenet
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.26.0/24
+          gateway: 192.168.26.1
+
+services: 
+  epc: 
+    # image: its-registry.unl.edu/nextt/demo_projects/ng-ran/srslte
+    image: srslte
+    privileged: true
+    restart: unless-stopped
+    ports:
+      - "36412:36412"
+      - "2152:2152"
+    volumes: 
+      - ./config/srslte:/home/nexttuser/.config/srslte
+      - ./config/srslte/:/etc/srslte
+      - /dev/bus/usb:/dev/bus/usb
+      - /lib/modules:/lib/modules
+      - /etc/network:/etc/network:rw
+      - ./startup_epc.sh:/start/startup_epc.sh
+      - ./startup.sh:/start/startup.sh
+    networks:
+        core_network:
+          ipv4_address: 192.168.26.2
+    entrypoint: ["/bin/bash"]
+    command: 'bash /start/startup_epc.sh'
+
+  enb_du:
+    container_name: enb-du
+    cap_add:
+      - SYS_NICE
+    networks:
+      core_network:
+        ipv4_address: 192.168.26.60
+    image: its-registry.unl.edu/nextt/demo_projects/ng-ran/oai-enb/ubuntu
+    entrypoint: /bin/bash -c /config/startup.sh
+    privileged: true
+    restart: unless-stopped
+    volumes: 
+      - type: bind
+        source: ./oai-config/du.band7.tm1.50PRB.usrpb210.conf
+        target: /opt/oai-enb/etc/enb.conf
+      - ./config/startup.sh:/config/startup.sh
+      - /dev/bus/usb:/dev/bus/usb
+      - /lib/modules:/lib/modules
+    depends_on:
+      - enb_cu
+      - epc
+
+
+  enb_cu:
+    container_name: enb-cu
+    ipc: shareable
+    cap_add:
+      - SYS_NICE
+    networks:
+      core_network:
+        ipv4_address: 192.168.26.61
+    image: its-registry.unl.edu/nextt/demo_projects/ng-ran/oai-enb/ubuntu
+    entrypoint: /bin/bash -c /config/startup.sh
+    privileged: true
+    restart: unless-stopped
+    volumes: 
+      - type: bind
+        source: ./oai-config/cu.band7.tm1.50PRB.conf
+        target: /opt/oai-enb/etc/enb.conf
+      - ./config/startup.sh:/config/startup.sh
+      - /lib/modules:/lib/modules
+      - /etc/network:/etc/network:rw
+    depends_on:
+      - epc
+
+  

@@ -1,0 +1,31 @@
+ARG UHD_IMAGE
+FROM ${UHD_IMAGE}
+
+# Accept these build arguments
+ARG CORES
+ARG VERSION
+
+# Install dependencies
+RUN apt-get update && \
+    apt-get install -y \
+        build-essential cmake \
+        libfftw3-dev libmbedtls-dev \
+        libboost-program-options-dev libconfig++-dev libsctp-dev \
+        libpcsclite-dev git \
+        net-tools tcpdump nano iptables
+
+# Clone the correct release branch
+RUN git clone --branch="release${VERSION}" https://github.com/srsRAN/srsRAN_4G.git
+
+# Build srsRAN
+WORKDIR /srsRAN_4G
+RUN mkdir build
+WORKDIR /srsRAN_4G/build
+RUN cmake ../
+RUN make -j"${CORES}"
+# RUN make test
+
+# Install srsRAN
+RUN make install
+RUN ldconfig 
+# RUN srsran_install_configs.sh user #install config not working, fix it
