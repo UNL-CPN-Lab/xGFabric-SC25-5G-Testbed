@@ -8,7 +8,7 @@ PUSH="true"
 
 # Architecture and cores
 architecture=$(uname -m)
-CORES=6
+CORES=12
 # SRS_VERSION="_20_10"
 
 # Tag format
@@ -16,7 +16,7 @@ image_tag=$(date +"%m_%d_%Y")
 
 # Image names
 BASE_IMAGE="base:$image_tag"
-UHD_IMAGE="its-registry.unl.edu/nextt/runtime/base-uhd/arm64-uhd_4.8:main-1a24a702"
+UHD_IMAGE="its-registry.unl.edu/nextt/runtime/base-uhd/amd64-uhd_4.8:main-103755c7"
 SRS_IMAGE="srsran-5g${SRS_VERSION}_${architecture}:$image_tag"
 
 # Registry path

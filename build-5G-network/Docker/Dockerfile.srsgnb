@@ -1,0 +1,11 @@
+FROM its-registry.unl.edu/nextt/runtime/srsran-4g/amd64/uhd_master:main-df286439
+
+# Install
+RUN sudo apt-get update && sudo apt-get install -y iperf3
+RUN sudo apt-get install -y nano
+RUN sudo apt-get install -y net-tools
+RUN sudo apt-get install -y iputils-ping
+RUN sudo apt-get install -y traceroute
+
+# Download UHD FPGA images
+RUN sudo python3 /usr/local/lib/uhd/utils/uhd_images_downloader.py

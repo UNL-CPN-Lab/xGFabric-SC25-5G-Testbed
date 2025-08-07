@@ -33,10 +33,6 @@ docker build -t uhd4.8 -f Docker/Dockerfile.uhd .
 docker build -t 5g_gnb -f Docker/Dockerfile.srsgNB .
 ```
 
-## Make a docker network 
-
-```docker network create --subnet=10.53.1.0/24 docker_ran```
-
 ## Run the docker compose file
 
-```docker compose up```
+```docker compose -f docker-compose-default.yml up```

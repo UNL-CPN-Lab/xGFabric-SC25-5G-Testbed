@@ -33,3 +33,7 @@ RUN make install
 
 USER nexttuser
 
+#Install any packages necessary
+RUN sudo python3 /usr/local/lib/uhd/utils/uhd_images_downloader.py
+RUN sudo apt-get install nano net-tools iptables -y
+

@@ -39,18 +39,18 @@ set -o pipefail
 #
 
 ###
-echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor >/dev/null
+echo performance | tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor >/dev/null
 echo "Scaling governor set to performance"
 
-echo N | sudo tee /sys/module/drm_kms_helper/parameters/poll >/dev/null
+echo N | tee /sys/module/drm_kms_helper/parameters/poll >/dev/null
 echo "Disabled DRM KMS polling"
 
-sudo sysctl -w net.core.wmem_max=33554432
-sudo sysctl -w net.core.rmem_max=33554432
-sudo sysctl -w net.core.wmem_default=33554432
-sudo sysctl -w net.core.rmem_default=33554432
+sysctl -w net.core.wmem_max=33554432
+sysctl -w net.core.rmem_max=33554432
+sysctl -w net.core.wmem_default=33554432
+sysctl -w net.core.rmem_default=33554432
 echo "Tweaked network buffer sizes"
 ###
 
 #Check for sudo rights
-sudo -v || exit
+# -v || exit

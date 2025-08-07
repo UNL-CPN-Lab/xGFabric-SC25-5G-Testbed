@@ -1,0 +1,88 @@
+cu_cp:
+  amf:
+    # addr: 10.53.1.2
+    addr: 11.53.1.2
+    port: 38412
+    bind_addr: 11.53.1.3
+    supported_tracking_areas:
+      - tac: 1
+        plmn_list:
+          - plmn: "99999"
+            tai_slice_support_list:
+              - sst: 1
+
+ru_sdr:
+  device_driver: uhd                                            # The RF driver name.
+  device_args: type=b200,num_recv_frames=64,num_send_frames=64  # Optionally pass arguments to the selected RF driver.
+  clock: external                                                       # Specify the clock source used by the RF.
+  # sync:                                                         # Specify the sync source used by the RF.
+  # srate: 46.08                                                  # RF sample rate might need to be adjusted according to selected bandwidth.  
+  srate: 46.08                                                # RF sample rate might need to be adjusted according to selected bandwidth.  
+  # srate: 61.44
+  otw_format: sc12
+  tx_gain: 80                                                   # Transmit gain of the RF might need to adjusted to the given situation.
+  rx_gain: 40                                                   # Receive gain of the RF might need to adjusted to the given situation.
+  # time_alignment_calibration: auto
+
+
+cell_cfg:
+  dl_arfcn: 632628 #512196 #632628 #512196 #536000 #512196 #632628 #524000 #632628                                                # ARFCN of the downlink carrier (center frequency).
+  band: 78 #41 #78 #78 #41 #7 #41 #78 #7 #78                                                        # The NR band.
+  # channel_bandwidth_MHz: 40                                       # Bandwith in MHz. Number of PRBs will be automatically derived.
+  channel_bandwidth_MHz: 40                                       # Bandwith in MHz. Number of PRBs will be automatically derived.
+  common_scs: 30                                                  # Subcarrier spacing in kHz used for data.
+  plmn: "99999"                                                    # PLMN broadcasted by the gNB.
+  tac: 1                                                          # Tracking area code (needs to match the core configuration).
+  pci: 1                                                          # Physical cell ID.
+  tdd_ul_dl_cfg:
+    dl_ul_tx_period: 10                     # Optional INT (10). Sets the TDD pattern periodicity in slots. The combination of this value and the chosen numerology must lead to a TDD periodicity of 0.5, 0.625, 1, 1.25, 2, 2.5, 3, 4, 5 or 10 milliseconds. Supported: [2 - 80].
+    nof_dl_slots: 2                         # Optional INT (6). Number of consecutive full Downlink slots. Supported: [0-80].
+    nof_dl_symbols: 8                       # Optional INT (8). Number of Downlink symbols at the beginning of the slot following full Downlink slots. Supported: [0-13].
+    nof_ul_slots: 7                       # Optional INT (3). Number of consecutive full Uplink slots. Supported: [0 - 80].
+    nof_ul_symbols: 0                       # Optional INT (0). Number of Uplink symbols at the end of the slot preceding the first full Uplink slot. Supported: [0-13].  
+
+# e2:
+#   enable_cu_cp_e2: true                # Optional BOOLEAN (false). Enables the CU E2 agent for CU-CP. Supported: [false, true]. 
+#   enable_cu_up_e2: true                # Optional BOOLEAN (false). Enables the CU E2 agent for CU-UP. Supported: [false, true]. 
+#   enable_du_e2: true                # Enable DU E2 agent (one for each DU instance)
+#   e2sm_kpm_enabled: true            # Enable KPM service module
+#   e2sm_rc_enabled: true             # Enable RC service module
+#   addr: 127.0.0.1                   # RIC IP address
+#   port: 36421                       # RIC port
+
+
+# expert_execution:
+#   threads:
+#     non_rt:
+#       nof_non_rt_threads: 4                   # Optional UINT (4). Sets the number of non real time threads for processing of CP and UP data in upper layers.
+#       non_rt_task_queue_size: 2048            # Optional UINT (2048). Sets the non real time task worker queue size. 
+#     upper_phy:
+#       nof_ul_threads: 5                       # Optional UINT (1). Sets the number of upprt PHY threads to proccess uplink.
+#       nof_dl_threads: 5                      # Optional UINT (1). Sets the number of upprt PHY threads to proccess downlink.
+#    lower_phy:
+#      execution_profile: quad                 # Optional TEXT (quad). Sets the lower physical layer executor profile. Supported: [single, dual, quad].
+#    ofh:
+#      enable_dl_parallelization: true         # Optional BOOLEAN (true). Sets the Open Fronthaul downlink parallelization flag. Supported: [false, true].
+
+log:
+  filename: /mnt/srsran/gnb.log                                   # Path of the log file.
+  all_level: warning                                              # Logging level applied to all layers.
+
+pcap:
+  mac_enable: false                                               # Set to true to enable MAC-layer PCAPs.
+  mac_filename: /mnt/srsran/gnb_mac.pcap                          # Path where the MAC PCAP is stored.
+  ngap_enable: false                                              # Set to true to enable NGAP PCAPs.
+  ngap_filename: /mnt/srsran/gnb_ngap.pcap                        # Path where the NGAP PCAP is stored.
+  f1ap_enable: false                                              # Set to true to enable F1AP PCAPs.
+  f1ap_filename: /mnt/srsran/gnb_f1ap.pcap                        # Path where the F1AP PCAP is stored.
+  e1ap_enable: false                                              # Set to true to enable E1AP PCAPs.
+  e1ap_filename: /mnt/srsran/gnb_e1ap.pcap                        # Path where the E1AP PCAP is stored.
+  n3_enable: false                                                # Set to true to enable N3 PCAPs.
+  n3_filename: /mnt/srsran/gnb_n3.pcap                            # Path where the N3 PCAP is stored.
+  e2ap_enable: true                              # Set to true to enable E2AP PCAPs.
+  e2ap_du_filename: /tmp/gnb_du_e2ap.pcap        # Path where the DU E2AP PCAP is stored.
+  e2ap_cu_cp_filename: /tmp/gnb_cu_cp_e2ap.pcap  # Path where the CU-CP E2AP PCAP is stored.
+  e2ap_cu_up_filename: /tmp/gnb_cu_up_e2ap.pcap  # Path where the CU-UP E2AP PCAP is stored.
+
+# metrics:
+#   rlc_report_period: 1000           # Set reporting period to 1s
